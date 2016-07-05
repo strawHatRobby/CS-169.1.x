@@ -44,7 +44,7 @@ session cookie.
 #### Self Check Question
 
 <details>
-  <summary>Enumerate the minimal game state that must be maintained
+  <summary>List the minimal game state that must be maintained
 during a game of Hangperson.</summary>
   <p><blockquote>The secret word; the list of letters that have been guessed correctly;
 the list of letters that have been guessed incorrectly.  Conveniently,
@@ -58,7 +58,7 @@ The game as a RESTful resource
 #### Self Check Question
 
 <details>
-  <summary>Enumerate the player actions that could cause changes
+  <summary>List the player actions that could cause changes
 in game state.</summary>
   <p><blockquote>Guess a letter: possibly modifies the lists of correct or incorrect
 guesses; possibly results in winning or losing the game.
