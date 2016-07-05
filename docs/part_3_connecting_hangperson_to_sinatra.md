@@ -36,8 +36,8 @@ The Session
 We've already identified the items necessary to maintain game state, and
 encapsulated them in the game class.
 Since HTTP is stateless, when a new HTTP request comes in, there is no
-notion of the "current game".  What we need to do, therefore, is save the game
-object in some way between requests.
+notion of the "current game".  **What we need to do, therefore, is save the game
+object in some way between requests.**
 
 If the game object were large, we'd probably store it in a database on
 the server, and place an identifier to the correct database record into
