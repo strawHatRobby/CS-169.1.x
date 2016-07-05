@@ -8,7 +8,7 @@ class MyApp < Sinatra::Base
 	<title>firstApp</title>
 </head>
 <body>
-    Hello Rob
+    Hello and Alvida
 </body>
 </html>"
 	end
