@@ -19,10 +19,6 @@ class HangpersonGame
     # @start_count = 0
   end
   
-  
-  
-    
-    
 
   def guess letter
       

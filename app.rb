@@ -22,15 +22,20 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
+    
     erb :new
+    
   end
   
   post '/create' do
     # NOTE: don't change next line - it's needed by autograder!
     word = params[:word] || HangpersonGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
-
+    session[:word] = word
+    session[:guesses] = @game.guesses
+    session[:wrong_guesses] = @game.wrong_guesses
     @game = HangpersonGame.new(word)
+    
     redirect '/show'
   end
   
@@ -38,8 +43,13 @@ class HangpersonApp < Sinatra::Base
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
+    # byebug
     letter = params[:guess].to_s[0]
-    ### YOUR CODE HERE ###
+    begin
+      flash[:message] = "You have already used that letter." unless @game.guess letter
+    rescue ArgumentError
+      flash[:message] = "Invalid guess."
+    end
     redirect '/show'
   end
   
@@ -50,6 +60,9 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
+    state = @game.check_win_or_lose
+    redirect '/win' if state == :win
+    redirect '/lose' if state == :lose
     erb :show # You may change/remove this line
   end
   
