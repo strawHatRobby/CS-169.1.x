@@ -52,7 +52,9 @@ class HangpersonApp < Sinatra::Base
     end
     redirect '/show'
   end
-  
+  def state
+     @game.check_win_or_lose
+  end
   # Everytime a guess is made, we should eventually end up at this route.
   # Use existing methods in HangpersonGame to check if player has
   # won, lost, or neither, and take the appropriate action.
@@ -60,19 +62,20 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    state = @game.check_win_or_lose
+    # state = @game.check_win_or_lose
     redirect '/win' if state == :win
     redirect '/lose' if state == :lose
     erb :show # You may change/remove this line
   end
   
   get '/win' do
-    ### YOUR CODE HERE ###
+    redirect '/show' if state != :win
+    
     erb :win # You may change/remove this line
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
+    redirect '/show' if state != :lose
     erb :lose # You may change/remove this line
   end
   
